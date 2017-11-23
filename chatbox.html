@@ -99,7 +99,7 @@
             $('form').submit(function () {
 
                 // socket.emit('chat message', getName() + $('#m').val());
-                socket.emit('chat message', nameX + + $('#m').val());
+                socket.emit('chat message', nameX + $('#m').val());
                 $('#m').val('');
                 return false;
             });
