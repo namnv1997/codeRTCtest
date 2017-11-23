@@ -10,6 +10,10 @@
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
   </fb:login-button>
 
+  <iframe src="chatbox.html" height="400">
+    
+  </iframe>
+
 </body>
 <script>
   window.fbAsyncInit = function () {
@@ -21,7 +25,6 @@
     });
 
     FB.AppEvents.logPageView();
-
 
 
     FB.getLoginStatus(function (response) {
