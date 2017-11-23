@@ -70,12 +70,13 @@ function getInfo() {
     });
 }
 
-function getName(nameX) {
-    FB.api('/me', {fields: 'first_name,last_name,name,id'},function(response) {
+function getName() {
+    FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
         nameX = response.name;
     });
     return nameX;
 }
+
 
 function getProfilePicture() {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,picture.width(30).height(30)'}, function(response) {
