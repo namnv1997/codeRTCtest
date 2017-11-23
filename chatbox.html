@@ -58,18 +58,55 @@
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-        var name;
-        name = "xxx";   
+        var nameX;
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1312200818884269',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+
+            FB.AppEvents.logPageView();
+
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+            FB.api('/me', function (response) {
+                nameX = response.name;
+            });
+
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+
     </script>
     <script>
-        
+
         $(function () {
-            console.log("hello " +name)
+            console.log("hello " + name)
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
-                
+
                 // socket.emit('chat message', getName() + $('#m').val());
-                socket.emit('chat message', $('#m').val());
+                socket.emit('chat message', nameX + ('#m').val());
                 $('#m').val('');
                 return false;
             });
