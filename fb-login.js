@@ -70,11 +70,12 @@ function getInfo() {
     });
 }
 
-function getName() {
+function getInfo(name) {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
-        nameX = response.name;
+        document.getElementById('status').innerHTML = response.name;
+        name = response.name;
     });
-    return nameX;
+    return response.name;
 }
 
 
