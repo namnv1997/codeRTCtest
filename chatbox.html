@@ -67,13 +67,6 @@
                 version: 'v2.8'
             });
 
-            FB.AppEvents.logPageView();
-
-
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-
             FB.api('/me', function (response) {
                 nameX = response.name;
             });
