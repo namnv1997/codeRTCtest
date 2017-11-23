@@ -58,17 +58,10 @@
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="fb-login.js"></script>
+
     <script>
         var nameX;
-        function Name() {
-            FB.api('/me', function(response) {
-               nameX = response.name;
-              });
-        }
-        console.log("gg : " + nameX);
-    </script>
-    <script>
-        Name();
+        nameX = getName("");
         $(function () {
             console.log("hello " +nameX)
             var socket = io("https://boxchat1.herokuapp.com");
