@@ -2,80 +2,68 @@
 <html>
 
 <head>
-
-  
-
-  <script>
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: '1312200818884269',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.8'
-      });
-
-      $(document).on(
-        'fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
-        function () {
-          //some code that requires the FB object
-          //such as...
-          FB.getLoginStatus(function (res) {
-            if (res.status == "connected") {
-              FB.api('/me', function (fbUser) {
-                console.log("Open the pod bay doors, " + fbUser.name + ".");
-              });
-            }
-          });
-
-        }
-      );
-
-      (function (d) {
-        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) { return; }
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        d.getElementsByTagName('head')[0].appendChild(js);
-      }(document));
-
-      FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {
-          // the user is logged in and has authenticated your
-          // app, and response.authResponse supplies
-          // the user's ID, a valid access token, a signed
-          // request, and the time the access token
-          // and signed request each expire
-          var uid = response.authResponse.userID;
-          var accessToken = response.authResponse.accessToken;
-        } else if (response.status === 'not_authorized') {
-          // the user is logged in to Facebook,
-          // but has not authenticated your app
-        } else {
-          // the user isn't logged in to Facebook.
-        }
-      });
-    }
-  </script>
-
-<script>
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
+  <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 </head>
 
 <body>
 
   <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
   </fb:login-button>
+  <script>
 
-  <iframe src="chatbox.html" height="400">
+    function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+      if (response.status === 'connected') {
+        testAPI();
 
-  </iframe>
+      } else if (response.status === 'not_authorized') {
+        FB.login(function (response) {
+          statusChangeCallback2(response);
+        }, { scope: 'public_profile,email' });
+
+      } else {
+        alert("not connected, not logged into facebook, we don't know");
+      }
+    }
+
+    function statusChangeCallback2(response) {
+      console.log('statusChangeCallback2');
+      console.log(response);
+      if (response.status === 'connected') {
+        testAPI();
+
+      } else if (response.status === 'not_authorized') {
+        console.log('still not authorized!');
+
+      } else {
+        alert("not connected, not logged into facebook, we don't know");
+      }
+    }
+
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function (response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+          'Thanks for logging in, ' + response.name + '!';
+      });
+    }
+
+    $(document).ready(function () {
+      FB.init({
+        appId: '853276941508723',
+        xfbml: true,
+        version: 'v2.8'
+      });
+      checkLoginState();
+    });
+  </script>
 
 </body>
