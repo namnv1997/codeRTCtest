@@ -58,7 +58,9 @@ function login() {
             
             FB.api('/me', function(response) {
                 nameX = response.name;
+                alert('Your name is ' + nameX);
               });
+        
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
