@@ -71,7 +71,7 @@ function getInfo() {
 }
 
 function getName(nameX) {
-    FB.api('/me', function(response) {
+    FB.api('/me', {fields: 'first_name,last_name,name,id'},function(response) {
         nameX = response.name;
     });
     return nameX;
