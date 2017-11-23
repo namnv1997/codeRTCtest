@@ -1,4 +1,5 @@
 // initialize and setup facebook js sdk
+var nameX;
 window.fbAsyncInit = function () {
     FB.init({
         appId: '1312200818884269',
@@ -19,6 +20,10 @@ window.fbAsyncInit = function () {
             anchor.classList.add('btn');
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
+
+            FB.api('/me', function(response) {
+                nameX = response.name;
+              });
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in';
@@ -68,14 +73,6 @@ function getInfo() {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
         document.getElementById('status').innerHTML = response.name;
     });
-}
-
-function getInfo(name) {
-    FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
-        document.getElementById('status').innerHTML = response.name;
-        name = response.name;
-    });
-    return response.name;
 }
 
 
