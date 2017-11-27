@@ -26,6 +26,10 @@ window.fbAsyncInit = function () {
             document.getElementById('status').innerHTML = 'You are not logged into Facebook';
         }
     });
+
+    FB.api('/me', function (response) {
+        setName(response.name);
+    });
 };
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -62,7 +66,14 @@ function login() {
     }, {scope: 'email'});
 }
 
+var nameFb;
+function setName(retName){
+    nameFb = retName;
+}
 
+function getNameFB(){
+    return nameFb;
+}
 
 
 // getting basic user info
