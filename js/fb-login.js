@@ -20,11 +20,6 @@ window.fbAsyncInit = function () {
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
 
-            FB.api('/me', function (response) {
-                var namex = response.name;
-                console.log("hello " + namex);
-                setName(namex);
-            });
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in';
@@ -61,6 +56,13 @@ function login() {
             anchor.classList.add('btn');
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
+
+            
+            FB.api('/me', function (response) {
+                var namex = response.name;
+                console.log("hello " + namex);
+                setName(namex)
+            });
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
