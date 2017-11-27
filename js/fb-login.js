@@ -20,6 +20,12 @@ window.fbAsyncInit = function () {
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
 
+            FB.api('/me', function (response) {
+                var namex = response.name;
+                console.log("hello " + namex);
+                setName(namex);
+            });
+
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in';
         } else {
@@ -27,11 +33,7 @@ window.fbAsyncInit = function () {
         }
     });
 
-    FB.api('/me', function (response) {
-        var namex = response.name;
-        console.log("hello " + namex);
-
-    });
+    
 };
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
