@@ -57,16 +57,37 @@
     </style>
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="js/fb-login.js"></script>
     <script>
+        var namex;
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1312200818884269',
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
+
         
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        FB.api('/me', function (response) {
+           namex = response.name;
+        });
+
+    </script>
+    <script>
+
         $(function () {
-            var namex;
-            namex = getInfo();
-            console.log("hello " +namex)
+            console.log("hello " + namex)
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
-                
+
                 // socket.emit('chat message', getName() + $('#m').val());
                 socket.emit('chat message', $('#m').val());
                 $('#m').val('');
