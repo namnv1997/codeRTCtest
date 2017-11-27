@@ -61,6 +61,10 @@
 
     <script>
         $(function () {
+            var nameX;
+            login(function(name){
+                nameX = name;
+            });
             console.log("hello " +nameX)
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
