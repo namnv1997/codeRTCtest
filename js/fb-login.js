@@ -62,6 +62,12 @@ function login() {
     }, {scope: 'email'});
 }
 
+function getName(cb) {
+    FB.api('/me', function(response) {
+        cb(response.name);
+      });
+}
+
 
 // getting basic user info
 function getInfo() {
