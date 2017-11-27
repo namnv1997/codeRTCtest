@@ -1,8 +1,7 @@
 // initialize and setup facebook js sdk
-
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '1312200818884269',
+        appId: '853276941508723',
         xfbml: true,
         version: 'v2.8'
     });
@@ -20,7 +19,6 @@ window.fbAsyncInit = function () {
             anchor.classList.add('btn');
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
-
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in';
@@ -64,14 +62,6 @@ function login() {
     }, {scope: 'email'});
 }
 
-function login(cb) {
-    FB.login(function (response) {
-        if (response.status === 'connected') {
-            cb(response.name);
-        }
-    }, {scope: 'email'});
-}
-
 
 // getting basic user info
 function getInfo() {
@@ -79,7 +69,6 @@ function getInfo() {
         document.getElementById('status').innerHTML = response.name;
     });
 }
-
 
 function getProfilePicture() {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,picture.width(30).height(30)'}, function(response) {

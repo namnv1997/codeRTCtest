@@ -57,17 +57,17 @@
     </style>
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="fb-login.js"></script>
-
     <script>
+        var name;
+        name = "xxx";   
+    </script>
+    <script>
+        
         $(function () {
-            var nameX;
-            login(function(name){
-                nameX = name;
-            });
-            console.log("hello " +nameX)
+            console.log("hello " +name)
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
+                
                 // socket.emit('chat message', getName() + $('#m').val());
                 socket.emit('chat message', $('#m').val());
                 $('#m').val('');
