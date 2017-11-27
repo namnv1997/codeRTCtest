@@ -62,11 +62,13 @@ function login() {
     }, {scope: 'email'});
 }
 
-function getName(cb) {
-    FB.api('/me', function(response) {
-        cb(response.name);
-      });
+function getName() {
+    FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
+        return response.name;
+    });
 }
+
+
 
 
 // getting basic user info
