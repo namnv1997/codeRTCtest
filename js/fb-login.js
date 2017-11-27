@@ -62,12 +62,6 @@ function login() {
     }, {scope: 'email'});
 }
 
-function getName() {
-    FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
-        return response.name;
-    });
-}
-
 
 
 
@@ -75,6 +69,7 @@ function getName() {
 function getInfo() {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
         document.getElementById('status').innerHTML = response.name;
+        return response.name;
     });
 }
 
