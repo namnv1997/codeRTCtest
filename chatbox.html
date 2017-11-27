@@ -66,14 +66,7 @@
                 xfbml: true,
                 version: 'v2.8'
             });
-
-            FB.api('/me', function (response) {
-                namex = response.name;
-                console.log("hello " + namex);
-
-            });
         };
-
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -88,11 +81,9 @@
     </script>
     <script>
         var nass;
-        nass = getNameFB();
+        nass = getName();
         console.log("get  " + nass);
-        console.log("hello " + namex);
         $(function () {
-            console.log("hello " + namex);
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
 

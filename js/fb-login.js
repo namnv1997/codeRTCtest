@@ -59,9 +59,7 @@ function login() {
 
             
             FB.api('/me', function (response) {
-                var namex = response.name;
-                console.log("hello " + namex);
-                setName(namex)
+               
             });
 
         } else if (response.status === 'not_authorized') {
@@ -72,14 +70,19 @@ function login() {
     }, {scope: 'email'});
 }
 
-var nameFb;
-function setName(retName){
-    nameFb = retName;
+function getName() {
+    FB.login(function (response) {
+        if (response.status === 'connected') {
+            
+            FB.api('/me', function (response) {
+               console.log("hello "+response.name);
+               return response.name;
+            });
+        }
+    }, {scope: 'email'});
+    return "Hihe";
 }
 
-function getNameFB(){
-    return nameFb;
-}
 
 
 // getting basic user info
