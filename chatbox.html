@@ -62,9 +62,7 @@
         
         $(function () {
             var namex;
-            getName(function(name){
-                namex = name;
-            });
+            namex = getName();
             console.log("hello " +namex)
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
