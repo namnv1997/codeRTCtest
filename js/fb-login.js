@@ -41,6 +41,7 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+var nameFB;
 // login with facebook with extra permissions
 function login() {
     FB.login(function (response) {
@@ -57,10 +58,10 @@ function login() {
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
 
-            
             FB.api('/me', function (response) {
-               
-            });
+                console.log("hello "+response.name);
+                nameFB = response.name;
+             });
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
@@ -71,16 +72,7 @@ function login() {
 }
 
 function getName() {
-    FB.login(function (response) {
-        if (response.status === 'connected') {
-            
-            FB.api('/me', function (response) {
-               console.log("hello "+response.name);
-               return response.name;
-            });
-        }
-    }, {scope: 'email'});
-    return "Hihe";
+   return nameFB;
 }
 
 
