@@ -28,7 +28,9 @@ window.fbAsyncInit = function () {
     });
 
     FB.api('/me', function (response) {
-        setName(response.name);
+        var namex = response.name;
+        console.log("hello " + namex);
+
     });
 };
 (function (d, s, id) {
