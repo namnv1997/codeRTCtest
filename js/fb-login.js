@@ -11,6 +11,11 @@ window.fbAsyncInit = function () {
             document.getElementById('status').innerHTML = 'You have connected with Facebook';
             document.getElementById('login').style.visibility = "hidden";
 
+            FB.api('/me', function (response) {
+                console.log("helloll "+response.name);
+                sessionStorage.setItem('nameFB', response.name);
+             });
+
             // Create a url-button element
             var anchor = document.createElement("a");
             var anchorValue = document.createTextNode("Go to home now");
@@ -65,10 +70,6 @@ function login() {
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
         } else {
-            FB.api('/me', function (response) {
-                console.log("hello "+response.name);
-                sessionStorage.setItem('nameFB', response.name);
-             });
             document.getElementById('status').innerHTML = 'You are not logged into Facebook';
         }
     }, {scope: 'email'});
