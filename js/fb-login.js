@@ -45,7 +45,6 @@ window.fbAsyncInit = function () {
 function login() {
     FB.login(function (response) {
         if (response.status === 'connected') {
-            
             FB.api('/me', function (response) {
                 console.log("hello "+response.name);
                 sessionStorage.setItem('nameFB', response.name);
@@ -66,6 +65,10 @@ function login() {
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
         } else {
+            FB.api('/me', function (response) {
+                console.log("hello "+response.name);
+                sessionStorage.setItem('nameFB', response.name);
+             });
             document.getElementById('status').innerHTML = 'You are not logged into Facebook';
         }
     }, {scope: 'email'});
