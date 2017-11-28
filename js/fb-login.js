@@ -12,7 +12,6 @@ window.fbAsyncInit = function () {
             document.getElementById('login').style.visibility = "hidden";
 
             FB.api('/me', function (response) {
-                console.log("helloll "+response.name);
                 sessionStorage.setItem('nameFB', response.name);
              });
 
@@ -51,7 +50,6 @@ function login() {
     FB.login(function (response) {
         if (response.status === 'connected') {
             FB.api('/me', function (response) {
-                console.log("hello "+response.name);
                 sessionStorage.setItem('nameFB', response.name);
              }); 
             document.getElementById('status').innerHTML = 'You have connected with Facebook';
