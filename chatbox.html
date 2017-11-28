@@ -59,31 +59,10 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="js/fb-login.js"></script>
     <script>
-        var namex;
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1312200818884269',
-                xfbml: true,
-                version: 'v2.8'
-            });
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-
-
-    </script>
-    <script>
-        var nass;
-        nass = getName();
-        console.log("get  " + nass);
+        
         $(function () {
+            var namex = sessionStorage.getItem('nameFB');
+            console.log("get  " + namex);
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
 

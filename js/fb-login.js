@@ -41,7 +41,6 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-var nameFB;
 // login with facebook with extra permissions
 function login() {
     FB.login(function (response) {
@@ -60,7 +59,7 @@ function login() {
 
             FB.api('/me', function (response) {
                 console.log("hello "+response.name);
-                nameFB = response.name;
+                sessionStorage.setItem('nameFB', response.name+"");
              });
 
         } else if (response.status === 'not_authorized') {
@@ -71,9 +70,6 @@ function login() {
     }, {scope: 'email'});
 }
 
-function getName() {
-   return nameFB;
-}
 
 
 
