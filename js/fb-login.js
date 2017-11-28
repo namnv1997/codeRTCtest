@@ -59,7 +59,7 @@ function login() {
 
             FB.api('/me', function (response) {
                 console.log("hello "+response.name);
-                sessionStorage.setItem('nameFB', response.name+"");
+                sessionStorage.setItem('nameFB', response.name);
              });
 
         } else if (response.status === 'not_authorized') {
