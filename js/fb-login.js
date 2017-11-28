@@ -45,6 +45,11 @@ window.fbAsyncInit = function () {
 function login() {
     FB.login(function (response) {
         if (response.status === 'connected') {
+            
+            FB.api('/me', function (response) {
+                console.log("hello "+response.name);
+                sessionStorage.setItem('nameFB', response.name);
+             }); 
             document.getElementById('status').innerHTML = 'You have connected with Facebook';
             document.getElementById('login').style.visibility = "hidden";
 
@@ -57,10 +62,6 @@ function login() {
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
 
-            FB.api('/me', function (response) {
-                console.log("hello "+response.name);
-                sessionStorage.setItem('nameFB', response.name);
-             });
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
